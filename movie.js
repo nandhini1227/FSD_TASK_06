@@ -1,56 +1,30 @@
 class Movie {
- constructor(rating = "", ID = 0, title = "") {
-    this.rating = rating;
-    this.ID = ID;
+ constructor(title, studio, rating) {
     this.title = title;
+    this.studio = studio;
+    this.rating = rating || "PG";
  }
 
- getRating() {
-    return this.rating;
- }
-
- setRating(aRating) {
-    this.rating = aRating;
- }
-
- getID() {
-    return this.ID;
- }
-
- setID(aID) {
-    this.ID = aID;
- }
-
- getTitle() {
-    return this.title;
- }
-
- setTitle(aTitle) {
-    this.title = aTitle;
- }
-
- calcLateFees(days) {
-    return 2.0 * days;
- }
-
- equals(obj) {
-    if (obj === null) return false;
-    else if (this.constructor !== obj.constructor) return false;
-    else {
-      const other = obj;
-
-      return (
-        this.rating === other.rating &&
-        this.ID === other.ID &&
-        this.title === other.title
-      );
-    }
- }
-
- toString() {
-    return `
-MPAA Rating: ${this.rating}
-ID Number: ${this.ID}
-Movie Title: ${this.title}`;
+ static getPG(movies) {
+    const pgMovies = movies.filter(movie => movie.rating === "PG");
+    return pgMovies;
  }
 }
+
+
+const movies = [
+ new Movie("Casino Royale", "Eon Productions", "PG-13"),
+ new Movie("Quantum of Solace", "Eon Productions", "PG-13"),
+ new Movie("Skyfall", "Eon Productions", "PG-13"),
+ new Movie("Blade Runner", "Warner Bros.", "R"),
+ new Movie("Dune", "Universal Pictures", "PG")
+];
+
+const pgMovies = Movie.getPG(movies);
+for (const movie of pgMovies) {
+ console.log(movie.title);
+}
+
+ 
+    
+
